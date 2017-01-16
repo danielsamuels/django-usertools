@@ -1,9 +1,6 @@
 {% extends "admin/change_list.html" %}
 
-
 {% block object-tools-items %}
-    <li>
-        <a class="addlink" href="{% url 'admin:auth_user_invite' %}">Invite user</a>
-    </li>
+    <a class="btn addlink" href="{% url 'admin:auth_user_invite' %}">Invite user</a>
     {{block.super}}
 {% endblock %}
