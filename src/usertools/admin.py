@@ -7,23 +7,23 @@ from functools import partial
 from django import template
 from django.conf import settings
 from django.conf.urls import url
-from django.contrib.auth.models import get_user_model, Group
-from django.contrib.auth.forms import AdminPasswordChangeForm
-from django.contrib.auth.admin import UserAdmin as UserAdminBase, GroupAdmin as GroupAdminBase
 from django.contrib import admin, auth
 from django.contrib.admin.utils import flatten_fieldsets
+from django.contrib.auth import get_user_model
+from django.contrib.auth.admin import GroupAdmin as GroupAdminBase
+from django.contrib.auth.admin import UserAdmin as UserAdminBase
+from django.contrib.auth.forms import AdminPasswordChangeForm
+from django.contrib.auth.models import Group
+from django.contrib.auth.tokens import default_token_generator
 from django.core.exceptions import PermissionDenied
-from django.core.urlresolvers import reverse
 from django.core.mail import send_mail
+from django.core.urlresolvers import reverse
 from django.db import transaction
 from django.db.models import Count
-from django.shortcuts import render, redirect
-from django.contrib.auth.tokens import default_token_generator
-from django.utils.http import int_to_base36, base36_to_int
+from django.shortcuts import redirect, render
 from django.utils.encoding import force_text
-
-from usertools.forms import UserCreationForm, UserChangeForm, UserInviteForm
-
+from django.utils.http import base36_to_int, int_to_base36
+from usertools.forms import UserChangeForm, UserCreationForm, UserInviteForm
 
 # Mix in watson search, if available.
 if "watson" in settings.INSTALLED_APPS:
