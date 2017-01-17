@@ -333,7 +333,7 @@ class UserAdmin(UserAdminBase, AdminBase):
                         user.is_active = True
                         user.save()
                         # Login the user.
-                        user = auth.authenticate(email=user.username, password=form.cleaned_data["password1"])
+                        user = auth.authenticate(email=user.email, password=form.cleaned_data["password1"])
                         auth.login(request, user)
                         # Message and redirect.
                         self.message_user(request, "Thanks for signing up! We've saved your password and logged you in.")
